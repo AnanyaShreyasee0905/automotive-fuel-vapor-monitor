@@ -169,10 +169,12 @@ For real automotive deployment, the design would require certified sensors, envi
 - Add wireless alerts through Wi-Fi or Bluetooth
 - Add a mobile application for monitoring and notifications
 
-## Author
+## Team Members
 
-Ananya Shreyasee
-
+- Ananya Shreyasee
+- Manasi Maanya
+- Meghavini Guptaa
+  
 ## License
 
 This project is licensed under the MIT License. See the `LICENSE` file for details.
