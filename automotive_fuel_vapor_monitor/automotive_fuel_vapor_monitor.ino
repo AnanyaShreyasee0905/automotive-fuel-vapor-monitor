@@ -27,6 +27,12 @@ const int MUTE_BUTTON_PIN = 13;
 const int COLOR_ON = HIGH;   // common cathode
 const int COLOR_OFF = LOW;
 
+// buzzer is switched via a transistor whose logic came out inverted in testing:
+// LOW = buzzer ON, HIGH = buzzer OFF. Flip these two constants back if you
+// rewire it and the behavior reverses again.
+const int BUZZER_ON = LOW;
+const int BUZZER_OFF = HIGH;
+
 const unsigned long WARMUP_MS = 30000;
 const unsigned long CAL_SAMPLE_MS = 3000;   // how long to average during calibration
 const unsigned long LONG_PRESS_MS = 2000;   // hold time to trigger calibration
@@ -190,7 +196,7 @@ void setup() {
   pinMode(MUTE_BUTTON_PIN, INPUT_PULLUP);
 
   setColor(false, false, false);
-  digitalWrite(BUZZER_PIN, LOW);
+  digitalWrite(BUZZER_PIN, BUZZER_OFF);
 
   loadCalibration();
 
@@ -255,13 +261,13 @@ void loop() {
 
   if (inAlert) {
     setColor(true, false, false);
-    digitalWrite(BUZZER_PIN, muted ? LOW : HIGH);
+    digitalWrite(BUZZER_PIN, muted ? BUZZER_OFF : BUZZER_ON);
   } else if (delta > WARN_MARGIN) {
     setColor(true, true, false);
-    digitalWrite(BUZZER_PIN, LOW);
+    digitalWrite(BUZZER_PIN, BUZZER_OFF);
   } else {
     setColor(false, true, false);
-    digitalWrite(BUZZER_PIN, LOW);
+    digitalWrite(BUZZER_PIN, BUZZER_OFF);
   }
 
   Serial.print("Gas: ");
